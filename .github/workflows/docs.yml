@@ -17,10 +17,12 @@ jobs:
         dotnet-version: 7.x
 
     - run: dotnet tool update -g docfx
-    - run: docfx $DOCFX_PROJECT_DIR/docfx.json
+    - run: docfx ${{ env.DOCFX_PROJECT_DIR }}/docfx.json
+
+    - run: ls -la
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: $DOCFX_PROJECT_DIR/_site
+        publish_dir: ${{ env.DOCFX_PROJECT_DIR }}/_site
