@@ -7,6 +7,7 @@ jobs:
   publish-docs:
     runs-on: ubuntu-latest
     env:
+      RX_PROJECT_DIR: Rx.NET/Source/
       DOCFX_PROJECT_DIR: Rx.NET/Source/docfx_project
     steps:
     - name: Checkout
@@ -15,6 +16,8 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.x
+
+    - run: dotnet build --project ${{ env.RX_PROJECT_DIR }}/System.Reactive.sln
 
     - run: dotnet tool update -g docfx
     - run: docfx ${{ env.DOCFX_PROJECT_DIR }}/docfx.json
