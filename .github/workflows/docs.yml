@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 7.x
 
-    - run: dotnet build ${{ env.RX_PROJECT_DIR }}/System.Reactive.sln
+    - run: dotnet build ${{ env.RX_PROJECT_DIR }}/System.Reactive.sln --framework net6.0
 
     - run: dotnet tool update -g docfx
     - run: docfx ${{ env.DOCFX_PROJECT_DIR }}/docfx.json
